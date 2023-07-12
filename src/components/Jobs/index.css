@@ -1,0 +1,91 @@
+.jobs-bg-container {
+    min-height: 90vh;
+    background-color: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.jobs-content-container {
+    margin-top: 48px;
+    width: 1110px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.userprofile-and-filter-container {
+    width: 27.5%;
+}
+
+.jobsheader-and-jobslist-container {
+    width: 67.5%;
+}
+
+.jobs-search-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 60%;
+    height: 36px;
+    border: 1px solid #64748b;
+    border-radius: 6px;
+    padding: 0px 12px 0px 12px;
+}
+
+.jobs-search-bar {
+    background-color: transparent;
+    border: 0px;
+    outline: 0px;
+    width: 100%;
+    /* padding: 6px 12px 6px 12px; */
+    color: #ffffff;
+}
+
+.search-icon-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.search-icon {
+    color: #ffffff;
+}
+
+.jobs-list-ul-container {
+    padding-left: 0px;
+}
+
+.horizontal-line {
+    height: 2px;
+    margin-top: 24px;
+}
+
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.failure-view-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    color: #ffffff;
+}
+
+.failure-view-image {
+    width: 50%;
+}
+
+.failure-view-heading {
+    margin-bottom: 0px;
+}

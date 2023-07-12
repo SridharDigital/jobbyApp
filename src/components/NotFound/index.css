@@ -1,0 +1,17 @@
+.notfound-bg-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.not-found-heading {
+    margin-bottom: 0px;
+}
+
+.not-found-description {
+    color: #64748b;
+}

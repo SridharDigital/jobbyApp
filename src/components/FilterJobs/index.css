@@ -1,0 +1,25 @@
+.filter-list-container {
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+  }
+
+  .filter-heading {
+    margin-bottom: 0px;
+  }
+
+  .filter-type-card {
+    padding-left: 9px;
+    padding-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  li {
+    list-style-type: none;
+    margin-bottom: 6px;
+  }
+  
+  .checkbox {
+    margin-left: 0px;
+    margin-right: 9px;
+  }
