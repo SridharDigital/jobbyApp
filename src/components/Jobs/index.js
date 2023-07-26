@@ -1,20 +1,20 @@
-import { Component } from "react"
-import { BiSearch } from "react-icons/bi"
-import { default as Cookies } from "js-cookie"
-import { MagnifyingGlass as Loader } from "react-loader-spinner"
+import { Component } from 'react'
+import { BiSearch } from 'react-icons/bi'
+import { default as Cookies } from 'js-cookie'
+import { MagnifyingGlass as Loader } from 'react-loader-spinner'
 
-import Header from "../Header"
-import UserProfile from "../UserProfile"
-import JobItem from "../JobItem"
-import FilterJobs from "../FilterJobs"
+import Header from '../Header'
+import UserProfile from '../UserProfile'
+import JobItem from '../JobItem'
+import FilterJobs from '../FilterJobs'
 
-import "./index.css"
+import './index.css'
 
 const apiStatusConstants = {
-  initial: "INITIAL",
-  success: "SUCCESS",
-  fail: "FAIL",
-  in_Progress: "IN_PROGRESS",
+  initial: 'INITIAL',
+  success: 'SUCCESS',
+  fail: 'FAIL',
+  in_Progress: 'IN_PROGRESS',
 }
 
 class Jobs extends Component {
@@ -22,8 +22,8 @@ class Jobs extends Component {
     jobsList: [],
     apiStatus: apiStatusConstants.initial,
     employmentType: [],
-    minimumPackage: "",
-    search: "",
+    minimumPackage: '',
+    search: '',
   }
 
   componentDidMount() {
@@ -48,12 +48,12 @@ class Jobs extends Component {
     this.setState({ apiStatus: apiStatusConstants.in_Progress })
 
     const { employmentType, minimumPackage, search } = this.state
-    const jwtToken = Cookies.get("jwt_token")
+    const jwtToken = Cookies.get('jwt_token')
 
     const url = `https://apis.ccbp.in/jobs?employment_type=${employmentType}&minimum_package=${minimumPackage}&search=${search}`
     console.log(url)
     const options = {
-      method: "GET",
+      method: 'GET',
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },

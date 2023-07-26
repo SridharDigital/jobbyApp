@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
-import Header from "../Header"
+import Header from '../Header'
 
-import "./index.css"
+import './index.css'
 
 const Home = () => {
   return (

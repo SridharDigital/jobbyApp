@@ -1,6 +1,6 @@
-import { Component } from "react"
-import { default as Cookies } from "js-cookie"
-import "./index.css"
+import { Component } from 'react'
+import { default as Cookies } from 'js-cookie'
+import './index.css'
 
 class UserProfile extends Component {
   state = { userProfileDetails: {} }
@@ -10,11 +10,11 @@ class UserProfile extends Component {
   }
 
   getUserProfileDetails = async () => {
-    const jwtToken = Cookies.get("jwt_token")
+    const jwtToken = Cookies.get('jwt_token')
 
-    const url = "https://apis.ccbp.in/profile"
+    const url = 'https://apis.ccbp.in/profile'
     const options = {
-      method: "GET",
+      method: 'GET',
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },

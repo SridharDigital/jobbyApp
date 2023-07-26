@@ -1,20 +1,20 @@
-import { Component } from "react"
-import { default as Cookies } from "js-cookie"
-import { AiFillStar } from "react-icons/ai"
-import { MdLocationOn } from "react-icons/md"
-import { BsFillBriefcaseFill } from "react-icons/bs"
-import { MagnifyingGlass as Loader } from "react-loader-spinner"
+import { Component } from 'react'
+import { default as Cookies } from 'js-cookie'
+import { AiFillStar } from 'react-icons/ai'
+import { MdLocationOn } from 'react-icons/md'
+import { BsFillBriefcaseFill } from 'react-icons/bs'
+import { MagnifyingGlass as Loader } from 'react-loader-spinner'
 
-import Header from "../Header"
-import SimilarJobItem from "../SimilarJobItem"
+import Header from '../Header'
+import SimilarJobItem from '../SimilarJobItem'
 
-import "./index.css"
+import './index.css'
 
 const apiStatusConstants = {
-  initial: "INITIAL",
-  success: "SUCCESS",
-  fail: "FAIL",
-  in_Progress: "IN_PROGRESS",
+  initial: 'INITIAL',
+  success: 'SUCCESS',
+  fail: 'FAIL',
+  in_Progress: 'IN_PROGRESS',
 }
 
 class jobDetails extends Component {
@@ -73,14 +73,15 @@ class jobDetails extends Component {
 
   getJobDetails = async () => {
     this.setState({ apiStatus: apiStatusConstants.in_Progress })
+
     const { history } = this.props
-    console.log(history)
     const path = history.location.pathname
-    const jwtToken = Cookies.get("jwt_token")
+
+    const jwtToken = Cookies.get('jwt_token')
 
     const url = `https://apis.ccbp.in${path}`
     const options = {
-      method: "GET",
+      method: 'GET',
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },

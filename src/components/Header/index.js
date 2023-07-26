@@ -1,13 +1,13 @@
-import "./index.css"
-import { Link, withRouter } from "react-router-dom"
-import { default as Cookies } from "js-cookie"
+import './index.css'
+import { Link, withRouter } from 'react-router-dom'
+import { default as Cookies } from 'js-cookie'
 
 const Header = (props) => {
   const { history } = props
   const onClickLogout = () => {
     // Cookies.remove("jwt_token")
     console.log(history)
-    history.replace("/")
+    history.replace('/')
   }
   return (
     <div className="header-bg-container">
@@ -18,10 +18,10 @@ const Header = (props) => {
           className="header-logo"
         />
         <div className="menu-text-container">
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/" style={{ textDecoration: 'none' }}>
             <p className="menu-text">Home</p>
           </Link>
-          <Link to="/jobs" style={{ textDecoration: "none" }}>
+          <Link to="/jobs" style={{ textDecoration: 'none' }}>
             <p className="menu-text">Jobs</p>
           </Link>
         </div>

@@ -1,10 +1,10 @@
-import { Component } from "react"
-import { default as Cookies } from "js-cookie"
-import { Redirect } from "react-router-dom"
-import "./index.css"
+import { Component } from 'react'
+import { default as Cookies } from 'js-cookie'
+import { Redirect } from 'react-router-dom'
+import './index.css'
 
 class Login extends Component {
-  state = { username: "", password: "", displayErrorMsg: false, errorMsg: "" }
+  state = { username: '', password: '', displayErrorMsg: false, errorMsg: '' }
 
   onChangeUpdateUsername = (event) => {
     this.setState({ username: event.target.value })
@@ -19,10 +19,10 @@ class Login extends Component {
     const { username, password } = this.state
     const userDetails = { username, password }
 
-    const url = "https://apis.ccbp.in/login"
+    const url = 'https://apis.ccbp.in/login'
 
     const options = {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(userDetails),
     }
 
@@ -34,8 +34,8 @@ class Login extends Component {
     if (response.ok) {
       const { history } = this.props
       const jwtToken = fetchedData.jwt_token
-      Cookies.set("jwt_token", jwtToken, { expires: 30 })
-      history.replace("/")
+      Cookies.set('jwt_token', jwtToken, { expires: 30 })
+      history.replace('/')
     } else {
       const errorMsg = fetchedData.error_msg
       this.setState({ displayErrorMsg: true, errorMsg: errorMsg })
@@ -44,7 +44,7 @@ class Login extends Component {
 
   render() {
     const { username, password, displayErrorMsg, errorMsg } = this.state
-    const jwtToken = Cookies.get("jwt_token")
+    const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
       return <Redirect to="/" />
     }
