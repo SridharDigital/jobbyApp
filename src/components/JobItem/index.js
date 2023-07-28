@@ -1,12 +1,12 @@
-import { AiFillStar } from 'react-icons/ai'
-import { MdLocationOn } from 'react-icons/md'
-import { BsFillBriefcaseFill } from 'react-icons/bs'
-import { Link } from 'react-router-dom'
+import {AiFillStar} from 'react-icons/ai'
+import {MdLocationOn} from 'react-icons/md'
+import {BsFillBriefcaseFill} from 'react-icons/bs'
+import {Link} from 'react-router-dom'
 
 import './index.css'
 
-const JobItem = (props) => {
-  const { jobItemDetails } = props
+const JobItem = props => {
+  const {jobItemDetails} = props
   const {
     id,
     title,
@@ -18,7 +18,7 @@ const JobItem = (props) => {
     rating,
   } = jobItemDetails
   return (
-    <Link to={`/jobs/${id}`} style={{ textDecoration: 'none' }}>
+    <Link to={`/jobs/${id}`} style={{textDecoration: 'none'}}>
       <li className="job-item-li-container">
         <div className="logo-and-title-rating-container">
           <img src={companyLogoUrl} alt={title} className="company-logo" />

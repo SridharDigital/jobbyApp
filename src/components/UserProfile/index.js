@@ -1,9 +1,9 @@
-import { Component } from 'react'
-import { default as Cookies } from 'js-cookie'
+import {Component} from 'react'
+import Cookies from 'js-cookie'
 import './index.css'
 
 class UserProfile extends Component {
-  state = { userProfileDetails: {} }
+  state = {userProfileDetails: {}}
 
   componentDidMount() {
     this.getUserProfileDetails()
@@ -32,21 +32,17 @@ class UserProfile extends Component {
         profileImageUrl: fetchedUserProfile.profile_image_url,
         shortBio: fetchedUserProfile.short_bio,
       }
-      this.setState({ userProfileDetails: userProfileDetails })
+      this.setState({userProfileDetails})
     }
   }
 
   render() {
-    const { userProfileDetails } = this.state
-    const { name, shortBio, profileImageUrl } = userProfileDetails
+    const {userProfileDetails} = this.state
+    const {name, shortBio, profileImageUrl} = userProfileDetails
 
     return (
       <div className="userprofile-bg-container">
-        <img
-          src={profileImageUrl}
-          alt="profile image"
-          className="profile-image"
-        />
+        <img src={profileImageUrl} alt="profile" className="profile-image" />
         <h2 className="profile-name-text">{name}</h2>
         <p className="profile-bio-text">{shortBio}</p>
       </div>

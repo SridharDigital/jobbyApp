@@ -1,49 +1,49 @@
-import "./index.css"
+import './index.css'
 // import { Component } from "react"
 
 const employmentTypesList = [
   {
-    label: "Full Time",
-    employmentTypeId: "FULLTIME",
+    label: 'Full Time',
+    employmentTypeId: 'FULLTIME',
   },
   {
-    label: "Part Time",
-    employmentTypeId: "PARTTIME",
+    label: 'Part Time',
+    employmentTypeId: 'PARTTIME',
   },
   {
-    label: "Freelance",
-    employmentTypeId: "FREELANCE",
+    label: 'Freelance',
+    employmentTypeId: 'FREELANCE',
   },
   {
-    label: "Internship",
-    employmentTypeId: "INTERNSHIP",
+    label: 'Internship',
+    employmentTypeId: 'INTERNSHIP',
   },
 ]
 
 const salaryRangesList = [
   {
-    salaryRangeId: "1000000",
-    label: "10 LPA and above",
+    salaryRangeId: '1000000',
+    label: '10 LPA and above',
   },
   {
-    salaryRangeId: "2000000",
-    label: "20 LPA and above",
+    salaryRangeId: '2000000',
+    label: '20 LPA and above',
   },
   {
-    salaryRangeId: "3000000",
-    label: "30 LPA and above",
+    salaryRangeId: '3000000',
+    label: '30 LPA and above',
   },
   {
-    salaryRangeId: "4000000",
-    label: "40 LPA and above",
+    salaryRangeId: '4000000',
+    label: '40 LPA and above',
   },
 ]
 
-const FilterJobs = (props) => {
-  const renderEmploymentTypesList = () => {
-    return employmentTypesList.map((eachEmployment) => {
-      const { updateEmploymentType } = props
-      const onChangeUpdateEmploymentType = (event) =>
+const FilterJobs = props => {
+  const renderEmploymentTypesList = () =>
+    employmentTypesList.map(eachEmployment => {
+      const {updateEmploymentType} = props
+      const onChangeUpdateEmploymentType = event =>
         updateEmploymentType(event.target)
       return (
         <li>
@@ -53,19 +53,18 @@ const FilterJobs = (props) => {
             id={eachEmployment.employmentTypeId}
             onChange={onChangeUpdateEmploymentType}
           />
-          <label for={eachEmployment.employmentTypeId}>
+          <label htmlFor={eachEmployment.employmentTypeId}>
             {eachEmployment.label}
           </label>
         </li>
       )
     })
-  }
 
-  const rendersalaryRangesList = () => {
-    return salaryRangesList.map((eachSalary) => {
-      const { updateMinimumPackage, currentMinimumPackage } = props
+  const rendersalaryRangesList = () =>
+    salaryRangesList.map(eachSalary => {
+      const {updateMinimumPackage, currentMinimumPackage} = props
       const isChecked = currentMinimumPackage === eachSalary.salaryRangeId
-      const onChangeUpdateupdateMinimumPackage = (event) =>
+      const onChangeUpdateupdateMinimumPackage = event =>
         updateMinimumPackage(event.target.id)
       return (
         <li>
@@ -76,11 +75,10 @@ const FilterJobs = (props) => {
             checked={isChecked}
             onChange={onChangeUpdateupdateMinimumPackage}
           />
-          <label for={eachSalary.salaryRangeId}>{eachSalary.label}</label>
+          <label htmlFor={eachSalary.salaryRangeId}>{eachSalary.label}</label>
         </li>
       )
     })
-  }
 
   return (
     <div className="filter-list-container">

@@ -1,23 +1,23 @@
-import { Component } from 'react'
-import { default as Cookies } from 'js-cookie'
-import { Redirect } from 'react-router-dom'
+import {Component} from 'react'
+import Cookies from 'js-cookie'
+import {Redirect} from 'react-router-dom'
 import './index.css'
 
 class Login extends Component {
-  state = { username: '', password: '', displayErrorMsg: false, errorMsg: '' }
+  state = {username: '', password: '', displayErrorMsg: false, errorMsg: ''}
 
-  onChangeUpdateUsername = (event) => {
-    this.setState({ username: event.target.value })
+  onChangeUpdateUsername = event => {
+    this.setState({username: event.target.value})
   }
 
-  onChangeUpdatePassword = (event) => {
-    this.setState({ password: event.target.value })
+  onChangeUpdatePassword = event => {
+    this.setState({password: event.target.value})
   }
 
-  onSubmitValidateUserDetails = async (event) => {
+  onSubmitValidateUserDetails = async event => {
     event.preventDefault()
-    const { username, password } = this.state
-    const userDetails = { username, password }
+    const {username, password} = this.state
+    const userDetails = {username, password}
 
     const url = 'https://apis.ccbp.in/login'
 
@@ -32,18 +32,18 @@ class Login extends Component {
     console.log(fetchedData)
 
     if (response.ok) {
-      const { history } = this.props
+      const {history} = this.props
       const jwtToken = fetchedData.jwt_token
-      Cookies.set('jwt_token', jwtToken, { expires: 30 })
+      Cookies.set('jwt_token', jwtToken, {expires: 30})
       history.replace('/')
     } else {
       const errorMsg = fetchedData.error_msg
-      this.setState({ displayErrorMsg: true, errorMsg: errorMsg })
+      this.setState({displayErrorMsg: true, errorMsg})
     }
   }
 
   render() {
-    const { username, password, displayErrorMsg, errorMsg } = this.state
+    const {username, password, displayErrorMsg, errorMsg} = this.state
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken !== undefined) {
       return <Redirect to="/" />

@@ -1,9 +1,9 @@
-import { Component } from 'react'
-import { default as Cookies } from 'js-cookie'
-import { AiFillStar } from 'react-icons/ai'
-import { MdLocationOn } from 'react-icons/md'
-import { BsFillBriefcaseFill } from 'react-icons/bs'
-import { MagnifyingGlass as Loader } from 'react-loader-spinner'
+import {Component} from 'react'
+import Cookies from 'js-cookie'
+import {AiFillStar} from 'react-icons/ai'
+import {MdLocationOn} from 'react-icons/md'
+import {BsFillBriefcaseFill} from 'react-icons/bs'
+import {MagnifyingGlass as Loader} from 'react-loader-spinner'
 
 import Header from '../Header'
 import SimilarJobItem from '../SimilarJobItem'
@@ -19,7 +19,7 @@ const apiStatusConstants = {
 
 class jobDetails extends Component {
   state = {
-    jobDetails: {},
+    jobDetailsList: {},
     similarJobDetails: [],
     apiStatus: apiStatusConstants.initial,
   }
@@ -28,10 +28,10 @@ class jobDetails extends Component {
     this.getJobDetails()
   }
 
-  ongetJobDetailsApiSuccess = (fetchedData) => {
+  ongetJobDetailsApiSuccess = fetchedData => {
     const fetchedJobDetails = fetchedData.job_details
 
-    const jobDetails = {
+    const jobDetailsList = {
       id: fetchedJobDetails.id,
       title: fetchedJobDetails.title,
       companyLogoUrl: fetchedJobDetails.company_logo_url,
@@ -45,24 +45,22 @@ class jobDetails extends Component {
       location: fetchedJobDetails.location,
       packagePerAnnum: fetchedJobDetails.package_per_annum,
       rating: fetchedJobDetails.rating,
-      skills: fetchedJobDetails.skills.map((eachSkill) => ({
+      skills: fetchedJobDetails.skills.map(eachSkill => ({
         name: eachSkill.name,
         imageUrl: eachSkill.image_url,
       })),
     }
 
     const fetchedSimilarJobDetails = fetchedData.similar_jobs
-    const similarJobDetails = fetchedSimilarJobDetails.map(
-      (eachSimilarJob) => ({
-        id: eachSimilarJob.id,
-        title: eachSimilarJob.title,
-        location: eachSimilarJob.location,
-        jobDescription: eachSimilarJob.job_description,
-        rating: eachSimilarJob.rating,
-        employmentType: eachSimilarJob.employment_type,
-        companyLogoUrl: eachSimilarJob.company_logo_url,
-      })
-    )
+    const similarJobDetails = fetchedSimilarJobDetails.map(eachSimilarJob => ({
+      id: eachSimilarJob.id,
+      title: eachSimilarJob.title,
+      location: eachSimilarJob.location,
+      jobDescription: eachSimilarJob.job_description,
+      rating: eachSimilarJob.rating,
+      employmentType: eachSimilarJob.employment_type,
+      companyLogoUrl: eachSimilarJob.company_logo_url,
+    }))
 
     this.setState({
       jobDetails,
@@ -72,9 +70,9 @@ class jobDetails extends Component {
   }
 
   getJobDetails = async () => {
-    this.setState({ apiStatus: apiStatusConstants.in_Progress })
+    this.setState({apiStatus: apiStatusConstants.in_Progress})
 
-    const { history } = this.props
+    const {history} = this.props
     const path = history.location.pathname
 
     const jwtToken = Cookies.get('jwt_token')
@@ -93,7 +91,7 @@ class jobDetails extends Component {
     if (response.ok) {
       this.ongetJobDetailsApiSuccess(fetchedData)
     } else {
-      this.setState({ apiStatus: apiStatusConstants.fail })
+      this.setState({apiStatus: apiStatusConstants.fail})
     }
   }
 
@@ -118,19 +116,17 @@ class jobDetails extends Component {
     )
   }
 
-  renderLoadingView() {
-    return (
-      <div className="loader-container">
-        <Loader />
-      </div>
-    )
-  }
+  renderLoadingView = () => (
+    <div className="loader-container">
+      <Loader />
+    </div>
+  )
 
   renderSkills() {
-    const { jobDetails } = this.state
-    const { skills } = jobDetails
+    const {jobDetailsList} = this.state
+    const {skills} = jobDetails
 
-    return skills?.map((eachSkill) => (
+    return skills?.map(eachSkill => (
       <li className="jobdetails-skill-li-container">
         <img
           src={eachSkill.imageUrl}
@@ -143,7 +139,7 @@ class jobDetails extends Component {
   }
 
   renderJobDetailsView() {
-    const { jobDetails } = this.state
+    const {jobDetailsList} = this.state
     const {
       title,
       companyLogoUrl,
@@ -198,7 +194,7 @@ class jobDetails extends Component {
   }
 
   renderJobDetails() {
-    const { apiStatus } = this.state
+    const {apiStatus} = this.state
 
     switch (apiStatus) {
       case apiStatusConstants.in_Progress:
@@ -212,7 +208,7 @@ class jobDetails extends Component {
 
   render() {
     console.log(this.state)
-    const { similarJobDetails } = this.state
+    const {similarJobDetails} = this.state
     return (
       <>
         <Header />
@@ -221,7 +217,7 @@ class jobDetails extends Component {
             {this.renderJobDetails()}
             <h2 className="similarjobs-heading">Similar Jobs</h2>
             <ul className="similar-job-ul-container">
-              {similarJobDetails.map((eachJobDetails) => (
+              {similarJobDetails.map(eachJobDetails => (
                 <SimilarJobItem
                   jobItemDetails={eachJobDetails}
                   key={eachJobDetails.id}

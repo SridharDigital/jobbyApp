@@ -1,7 +1,7 @@
-import { Component } from 'react'
-import { BiSearch } from 'react-icons/bi'
-import { default as Cookies } from 'js-cookie'
-import { MagnifyingGlass as Loader } from 'react-loader-spinner'
+import {Component} from 'react'
+import {BiSearch} from 'react-icons/bi'
+import Cookies from 'js-cookie'
+import {MagnifyingGlass as Loader} from 'react-loader-spinner'
 
 import Header from '../Header'
 import UserProfile from '../UserProfile'
@@ -30,8 +30,8 @@ class Jobs extends Component {
     this.getJobsList()
   }
 
-  ongetJobsListApiSuccess = (fetchedJobs) => {
-    const jobsList = fetchedJobs.map((job) => ({
+  ongetJobsListApiSuccess = fetchedJobs => {
+    const jobsList = fetchedJobs.map(job => ({
       id: job.id,
       title: job.title,
       companyLogoUrl: job.company_logo_url,
@@ -41,13 +41,13 @@ class Jobs extends Component {
       packagePerAnnum: job.package_per_annum,
       rating: job.rating,
     }))
-    this.setState({ jobsList: jobsList, apiStatus: apiStatusConstants.success })
+    this.setState({jobsList, apiStatus: apiStatusConstants.success})
   }
 
   getJobsList = async () => {
-    this.setState({ apiStatus: apiStatusConstants.in_Progress })
+    this.setState({apiStatus: apiStatusConstants.in_Progress})
 
-    const { employmentType, minimumPackage, search } = this.state
+    const {employmentType, minimumPackage, search} = this.state
     const jwtToken = Cookies.get('jwt_token')
 
     const url = `https://apis.ccbp.in/jobs?employment_type=${employmentType}&minimum_package=${minimumPackage}&search=${search}`
@@ -65,12 +65,12 @@ class Jobs extends Component {
     if (response.ok) {
       this.ongetJobsListApiSuccess(fetchedData.jobs)
     } else {
-      this.setState({ apiStatus: apiStatusConstants.fail })
+      this.setState({apiStatus: apiStatusConstants.fail})
     }
   }
 
-  onChangeUpdateSearch = (event) => {
-    this.setState({ search: event.target.value })
+  onChangeUpdateSearch = event => {
+    this.setState({search: event.target.value})
     this.getJobsList()
   }
 
@@ -78,31 +78,29 @@ class Jobs extends Component {
     this.getJobsList()
   }
 
-  updateEmploymentType = (target) => {
-    const { employmentType } = this.state
+  updateEmploymentType = target => {
+    const {employmentType} = this.state
     if (target.checked) {
       this.setState(
-        { employmentType: [...employmentType, target.id] },
-        this.getJobsList
+        {employmentType: [...employmentType, target.id]},
+        this.getJobsList,
       )
     } else {
       const updatedEmploymentType = employmentType.filter(
-        (each) => target.id !== each
+        each => target.id !== each,
       )
-      this.setState({ employmentType: updatedEmploymentType }, this.getJobsList)
+      this.setState({employmentType: updatedEmploymentType}, this.getJobsList)
     }
   }
 
-  updateMinimumPackage = (id) =>
-    this.setState({ minimumPackage: id }, this.getJobsList)
+  updateMinimumPackage = id =>
+    this.setState({minimumPackage: id}, this.getJobsList)
 
-  renderLoadingView() {
-    return (
-      <div className="loader-container">
-        <Loader />
-      </div>
-    )
-  }
+  renderLoadingView = () => (
+    <div className="loader-container">
+      <Loader />
+    </div>
+  )
 
   renderFailureView() {
     return (
@@ -121,28 +119,26 @@ class Jobs extends Component {
     )
   }
 
-  renderNoJobsView() {
-    return (
-      <div className="failure-view-container">
-        <img
-          src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
-          alt="no jobs"
-          className="failure-view-image"
-        />
-        <h1 className="failure-view-heading">No Jobs Found</h1>
-        <p>We could not find any jobs. Try other filters.</p>
-      </div>
-    )
-  }
+  renderNoJobsView = () => (
+    <div className="failure-view-container">
+      <img
+        src="https://assets.ccbp.in/frontend/react-js/no-jobs-img.png"
+        alt="no jobs"
+        className="failure-view-image"
+      />
+      <h1 className="failure-view-heading">No Jobs Found</h1>
+      <p>We could not find any jobs. Try other filters.</p>
+    </div>
+  )
 
   renderDisplayJobsView() {
-    const { jobsList } = this.state
+    const {jobsList} = this.state
     const noOfJobs = jobsList.length
     return (
       <>
         {noOfJobs !== 0 ? (
           <ul className="jobs-list-ul-container">
-            {jobsList.map((eachJob) => (
+            {jobsList.map(eachJob => (
               <JobItem jobItemDetails={eachJob} key={eachJob.id} />
             ))}
           </ul>
@@ -154,7 +150,7 @@ class Jobs extends Component {
   }
 
   renderJobs() {
-    const { apiStatus } = this.state
+    const {apiStatus} = this.state
 
     switch (apiStatus) {
       case apiStatusConstants.in_Progress:
@@ -169,8 +165,7 @@ class Jobs extends Component {
   }
 
   render() {
-    console.log(this.state.employmentType)
-    const { search, minimumPackage } = this.state
+    const {search, minimumPackage} = this.state
 
     return (
       <>
